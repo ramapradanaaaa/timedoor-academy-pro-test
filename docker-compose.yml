@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+        - 8081:80
+    environment:
+        - PMA_HOST=mariadb
+        - PMA_PORT=3306
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: docker.io/bitnami/mariadb:10.10
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=app
+      - MARIADB_DATABASE=app
+      - MARIADB_PASSWORD=app
+
+  app:
+    tty: true
+    image: docker.io/bitnami/laravel:8.6.11
+    environment:
+      - DB_HOST=mariadb
+      - DB_USERNAME=app
+      - DB_DATABASE=app
+      - DB_PASSWORD=app
+    depends_on:
+      - mariadb
+    ports:
+      - 3000:8000
+    volumes:
+      - ./:/app
+    # privileged: true # Privileged mode could be required to run this container under Windows
