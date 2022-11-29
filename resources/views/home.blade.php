@@ -9,9 +9,11 @@
       <td>List shown</td>
       <td>:</td>
       <td>
-        <select name="" id="">
+        <select name="list-shown" id="">
           @for ($i = 10; $i <= 100; $i+=10)
-            <option value="{{$i}}">{{ $i }}</option>  
+            <option value="{{$i}}" @if ($listShown == $i)
+                selected
+            @endif>{{ $i }}</option>  
           @endfor
         </select>
       </td>
@@ -20,7 +22,7 @@
       <td>Search</td>
       <td>:</td>
       <td>
-        <input type="text" name="search" id="">
+        <input type="text" name="search" id="" value="{{ $searchQuery }}">
       </td>
     </tr>
 
@@ -47,7 +49,16 @@
       </tr>
   </thead>
   <tbody>
-    <tr></tr>
+    @foreach ($books as $key => $item)
+        <tr>
+          <td>{{ $key + 1 }}</td>
+          <td>{{ $item->book_name }}</td>
+          <td>{{ $item->category_name }}</td>
+          <td>{{ $item->author_name }}</td>
+          <td>{{ $item->rating }}</td>
+          <td>{{ $item->voter }}</td>
+        </tr>
+    @endforeach
   </tbody>
 </table>
 @endsection
