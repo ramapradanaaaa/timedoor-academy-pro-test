@@ -18,8 +18,8 @@
 </head>
 <body>
   <header>
-    <a href="">Home</a>
-    <a href="">Authors</a>
+    <a href="{{ route('home') }}">Home</a>
+    <a href="{{ route('author') }}">Authors</a>
     <a href="">Rating</a>
     <hr>
   </header>
