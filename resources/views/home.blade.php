@@ -25,7 +25,6 @@
         <input type="text" name="search" id="" value="{{ $searchQuery }}">
       </td>
     </tr>
-
     <tr>
       <td></td>
       <td></td>

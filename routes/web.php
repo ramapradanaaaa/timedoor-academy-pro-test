@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\RatingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +17,5 @@ use App\Http\Controllers\AuthorController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/author', [AuthorController::class, 'mostFamous'])->name('author');
+Route::get('/rating', [RatingController::class, 'index'])->name('rating.index');
+Route::post('/rating', [RatingController::class, 'rate'])->name('rating.rate');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Author;
+use App\Models\Book;
 
 class AuthorController extends Controller
 {
@@ -19,5 +20,13 @@ class AuthorController extends Controller
 
     
         return view('authors', compact('authors'));
+    }
+
+    public function getBooksApi($id) {
+        $books = Book::where('author_id', $id)
+            ->selectRaw('id,name')
+            ->get();
+        
+        return $books;
     }
 }

@@ -20,7 +20,7 @@
   <header>
     <a href="{{ route('home') }}">Home</a>
     <a href="{{ route('author') }}">Authors</a>
-    <a href="">Rating</a>
+    <a href="{{ route('rating.index') }}">Rating</a>
     <hr>
   </header>
 
