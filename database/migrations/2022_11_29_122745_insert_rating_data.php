@@ -16,11 +16,17 @@ class InsertRatingData extends Migration
      */
     public function up()
     {
-        //rate only 1000 books
-        $books = Book::select('id', 'author_id')->limit(200)->get();
+        // rate book from 30 author
+
+        $authors = Author::select('id')->limit(15)->get();
+        $authorIds = $authors->pluck('id');
+
+        $books = Book::select('id', 'author_id')
+            ->whereIn('author_id', $authorIds)->get();
 
         $ratingCount = 50000;
         $insertedRating = 0;
+        $insertEvery = 1000; #books
 
         $dataToInsert = array();
         $counter = 0;
@@ -33,7 +39,7 @@ class InsertRatingData extends Migration
             ]);
 
             $counter++;
-            if ($counter == $books->count() || $insertedRating + $counter >= $ratingCount) {
+            if ($counter == $insertEvery || $insertedRating + $counter >= $ratingCount) {
                 Rating::insert($dataToInsert);
                 $insertedRating += $counter;
                 $counter = 0;
