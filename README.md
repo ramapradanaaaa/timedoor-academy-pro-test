@@ -1,4 +1,4 @@
-### Books
+# Books App
 
 Showing most popular books, most popular author and rate book in scale 1-10
 
@@ -15,7 +15,7 @@ Make sure you are connected during the instalation
 1. Run `docker-compose up -d`
 2. Enter the app container with `docker exec -it timedoor-academy-pro-test_app_1 bash`
 3. Run `php artisan migrate`
-4. Done
+4. Access the app via http://localhost:3000
 
 ## Instalation without Docker
 
@@ -33,4 +33,4 @@ DB_PASSWORD=
 ```
 
 4. Run `php artisan migrate`
-5. Done
+5. Access the app via http://localhost:3000
